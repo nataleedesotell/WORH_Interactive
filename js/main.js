@@ -127,7 +127,7 @@ function setEnumerationUnits(wiCounties, map, path, colorScale) {
 
 //set up a variable for the dehighlight function -- what the style will return to on mouseout
     var desc = counties.append("desc")
-        .text('{"stroke": "#faf0e6", "stroke-width": "0.5"}');
+        .text('{"stroke": "black", "stroke-width": "0.5"}');
 
 };
 
