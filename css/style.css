@@ -7,6 +7,11 @@ body {
     stroke-width: 0.5px;
 }
 
+
+.dynamicTitle {
+
+}
+
 .chart {
     position: absolute;
     top: 100px;
@@ -83,12 +88,7 @@ body {
 }
 
 .map {
-    position: absolute;
-    top: 20px;
-    left: 30px ;
-    border: none;
-    margin: 100px 0 0 40px;
-    background: none;
+    float: left;
 }
 
 #title {

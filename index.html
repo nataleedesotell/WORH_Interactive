@@ -1,5 +1,6 @@
-
-
+<!-- 
+source for dropdown: http://jsfiddle.net/2Smgv/2858/
+source for pie charts: https://bl.ocks.org/mbostock/3887235#data.csv -->
 
 
 <!DOCTYPE html>
@@ -36,6 +37,8 @@
 
 					</button>
 				</div>
+
+
 				<!-- menu items -->
 				<div class="collapse navbar-collapse" id="mainNavBar">
 					<ul class="nav navbar-nav">
@@ -50,31 +53,83 @@
 				</div>
 			</div>
 		</nav>
-		<!-- <div class="dropdown">
-		  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-		    Select an Antibiotic
-		    <span class="caret"></span>
-		  </button>
-		  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-		    <li><a href="#">Nitrofurantoin</a></li>
-		    <li><a href="#">Ciprofloxacin</a></li>
-		    <li><a href="#">Levofloxacin</a></li>
-		    <li role="separator" class="divider"></li>
-		    <li><a href="#">Separated link</a></li>
-		  </ul>
-		</div> -->
-		<div class="map" "col-lg-6 col-md-6 col-sm-4 col-xs-3" style:"background-color:red"></div>
-		<!-- <div id="content">
-		<div id="disclosure">Disclosure: This map is based on 2009 data. The data were provided to us at the
-			Emergency Response Zone level (7 regions), but we have chosen to display it by county so that counties
-			can be easily identified. Thus, the percentages are averaged within the Emergency Response Zones.<br><br></div>
-		<div id="info">Laurel Legenza, Comparative Health Systems Global Pharmacy Fellow, is leading the project
-			under the mentorship of Warren Rose and Susanne Barnett, associate professors (CHS) in the Pharmacy
-			Practice Division at the UW-Madison School of Pharmacy. This interactive visualization was created
-			by Natalee Robson Desotell, with guidance from Professor Robert Roth, as a capstone project for the
-			UW-Madison GIS Certificate Program. The data was provided by
-			Erik Munson, Ph.D., D(ABMM).  </div>
-			</div> -->
+
+		<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+      <div class="container-fluid">
+        <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a href="#">More options</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Second level link</a></li>
+                    <li><a href="#">Second level link</a></li>
+                    <li><a href="#">Second level link</a></li>
+                    <li><a href="#">Second level link</a></li>
+                    <li><a href="#">Second level link</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="nav-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="nav pull-right">
+            <li><a href="#">Link</a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+              <a class="#" href="#">Menu</a>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div>
+  </div>
+</div>
+
+<hr>
+
+<ul class="nav nav-pills">
+    <li class="dropdown">
+      <a href="#" data-toggle="dropdown" class="dropdown-toggle">Dropdown <b class="caret"></b></a>
+      <ul class="dropdown-menu" id="menu1">
+        <li class="dropdown-submenu">
+          <a href="#">More options</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Second level link</a></li>
+            <li><a href="#">Second level link</a></li>
+            <li><a href="#">Second level link</a></li>
+            <li><a href="#">Second level link</a></li>
+            <li><a href="#">Second level link</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a href="#">Menu</a>
+    </li>
+    <li class="dropdown">
+      <a href="#">Menu</a>
+    </li>
+</ul>
+
+		<div class="map" "col-lg-6 col-md-6 col-sm-4 col-xs-3" style:"background-color:blue"></div>
 		<script type="text/javascript" src="lib/d3.min.js"></script>
 		<script type="text/javascript" src="lib/d3-queue.v2.min.js"></script>
 		<script type="text/javascript" src="lib/topojson.v1.min.js"></script>

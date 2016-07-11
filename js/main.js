@@ -14,6 +14,67 @@ var chartWidth = window.innerWidth * 0.35,
     chartInnerHeight = chartHeight - topBottomPadding * 2,
     translate = "translate(" + leftPadding + "," + topBottomPadding + ")";
 
+    //will eventually be a dynamic title that changes when the user selects a new classification type
+      var dynamicTitle = d3.select("body")
+              .attr("x", 100)
+              .attr("y", 100)
+              .attr("class", "dynamicTitle")
+              .attr("text-anchor", "middle");
+
+//START PIE CHART DATA
+function createPieCharts (data) {
+              var width = 960,
+                  height = 500,
+                  radius = Math.min(width, height) / 2;
+
+              var color = d3.scale.ordinal()
+                  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+              var arc = d3.svg.arc()
+                  .outerRadius(radius - 10)
+                  .innerRadius(0);
+
+              var labelArc = d3.svg.arc()
+                  .outerRadius(radius - 40)
+                  .innerRadius(radius - 40);
+
+              var pie = d3.layout.pie()
+                  .sort(null)
+                  .value(function(d) { return d.population; });
+
+              var svg = d3.select("body").append("svg")
+                  .attr("width", width)
+                  .attr("height", height)
+                .append("g")
+                  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+              d3.csv("data.csv", type, function(error, data) {
+                if (error) throw error;
+
+                var g = svg.selectAll(".arc")
+                    .data(pie(data))
+                  .enter().append("g")
+                    .attr("class", "arc");
+
+                g.append("path")
+                    .attr("d", arc)
+                    .style("fill", function(d) { return color(d.data.age); });
+
+                g.append("text")
+                    .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+                    .attr("dy", ".35em")
+                    .text(function(d) { return d.data.age; });
+              });
+
+              function type(d) {
+                d.population = +d.population;
+                return d;
+              }
+            };
+
+//END PIE CHART DATA
+
+
 //yScale for chart, give the axis a domain
 var yScale = d3.scale.linear()
     .range([chartHeight, 0])
@@ -24,9 +85,10 @@ window.onload = setMap();
 
 //set up the choropleth
 function setMap() {
+  console.log(dynamicTitle);
     //width is a function of window size
-    var width = window.innerWidth * 0.6,
-        height = 800;
+    var width = window.innerWidth * 0.5,
+        height = window.innerHeight;
 
     // map variable, an svg element with attributes styled in style.css
     var map = d3.select("body")
@@ -35,9 +97,10 @@ function setMap() {
         .attr("width", width)
         .attr("height", height);
 
+
 //set the projection for WI, equal area because choropeth
     var projection = d3.geo.albers()
-        .scale(8500)
+        .scale(5000)
         .center([0.00, 44.437778])
         .rotate ([90.130186, 0, 0])
         .parallels([42, 46])
@@ -67,6 +130,7 @@ function setMap() {
     setChart(csvData, colorScale);
     //add the dropdown
     createDropdown(csvData);
+    createPieCharts(data);
     };
 };//end of setMap
 
@@ -172,13 +236,17 @@ function makeColorScale(data){
 };
 //function to test for data value and return color
 function choropleth(props, colorScale){
+
     //make sure attribute value is a number
     var val = parseFloat(props[expressed]);
     //if attribute value exists, assign a color; otherwise assign gray
     if (val && val != NaN){
         return colorScale(val);
+        var dynamicTitle = map.append(".dynamicTitle")
+        .text("test text for dynamic title");
     } else {
         return "#CCC";
+
   };
 };
 // creates coordinated bar chart
@@ -231,6 +299,7 @@ function setChart(csvData, colorScale) {
     //below Example 2.2 line 31...add style descriptor to each rect
     var desc = bars.append("desc")
         .text('{"stroke": "none", "stroke-width": "0px"}');
+
 
     //creates a text element for the chart title
     var chartTitle = chart.append("text")
